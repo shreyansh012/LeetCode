@@ -21,7 +21,7 @@ public:
                 ans.push_back(digits[i]);
         }
         else
-            return digits;
+            ans=digits;
         
     return ans;
     }
