@@ -1,6 +1,8 @@
 class Solution {
 public:
     bool checkIfPangram(string sentence) {
+        if(sentence.length()<26)
+            return false;
         int arr[26]={0};
         for(int i=0;i<sentence.length();i++){
             arr[sentence[i]-97]++;
