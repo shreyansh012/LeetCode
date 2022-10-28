@@ -12,8 +12,8 @@ public:
             sort(s.begin(),s.end());
             mp[s].push_back(strs[i]);
         }
-        for(auto i=mp.begin();i!=mp.end();i++){
-            ans.push_back(i -> second);
+        for(auto i:mp){
+            ans.push_back(i.second);
         }
         return ans;
     }
