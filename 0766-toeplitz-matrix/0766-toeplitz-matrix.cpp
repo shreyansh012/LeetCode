@@ -6,7 +6,8 @@ public:
         
         for(int i=0;i<m-1;i++){
             for(int j=0;j<n-1;j++){
-                int r=i+1,c=j+1;
+                if(matrix[i][j]!=-1)
+                {int r=i+1,c=j+1;
                 while(r<m && c<n){
                     if(matrix[i][j]!=matrix[r][c])
                         return false;
@@ -15,7 +16,8 @@ public:
                         r++;c++;
                     }
                 }
-            }
+                matrix[i][j]=-1;
+            }}
         }
         return true;
     }
