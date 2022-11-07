@@ -1,42 +1,24 @@
 class Solution {
-    string countpushnum(int count){
-        string s="";
-        while(count){
-            int num=count%10;
-            s.push_back(num+'0');
-            count/=10;
-        }
-        reverse(s.begin(),s.end());
-        return s;
-    }
 public:
     int compress(vector<char>& chars) {
-        string s;
-        //int len=1;
-        s+=chars[0];
-        for(int i=1;i<chars.size();i++){
-            if(chars[i]==chars[i-1]){
-                int count=2;
-                while(i<chars.size()-1 && chars[i]==chars[i+1]){
-                    count++;
-                    i++;
+        int i=0;
+        int len=0;
+        while(i<chars.size()){
+            int j=i+1;
+            while(j<chars.size() && chars[i]==chars[j]){
+                j++;
+            }
+            chars[len++]=chars[i];
+            int num=j-i;
+            if(num>1){
+            
+                string s=to_string(num);
+                for(auto k:s){
+                    chars[len++]=k;
                 }
-                if(count<10)
-                    s.push_back(count+48);
-                else
-                    s+=countpushnum(count);
             }
-            else{
-                s.push_back(chars[i]);
-
-            }
+            i=j;
         }
-
-        for(int i=0;i<s.length();i++){
-            chars[i]=s[i];
-        }
-
-
-        return s.length();
+        return len;
     }
 };
