@@ -11,7 +11,7 @@ class Solution {
 public:
     int guessNumber(int n) {
         
-        int s=0,e=n;
+        int s=1,e=n;
         int mid=s+(e-s)/2;
         while(s<=e){
            if(guess(mid)==0)
