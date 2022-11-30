@@ -4,15 +4,15 @@ public:
         int i=0;
         sort(arr.begin(),arr.end());
         vector<int> ans;
-        while(i<arr.size()){
-            int count=1;
-            for(int j=i+1;j<arr.size();j++){
-                if(arr[i]==arr[j])
-                        count++;}
-            //cout<<count<<" ";
-            ans.push_back(count);
-            i=i+count;
+        int ctr=1;
+        for(int i=1;i<arr.size();i++){
+            if(arr[i]!=arr[i-1]){
+                ans.push_back(ctr);
+                ctr=1;
+            }
+            else ctr++;
         }
+        ans.push_back(ctr);
         sort(ans.begin(),ans.end());
         for(int i=0;i<ans.size()-1;i++){
             if(ans[i]==ans[i+1])
