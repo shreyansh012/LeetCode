@@ -11,12 +11,12 @@ public:
     bool hasCycle(ListNode *head) {
         if(!head)
             return false;
-        unordered_map<ListNode*, bool> umap;
-        while(head){
-            if(umap[head])
+        ListNode *slow=head,*fast=head;
+        while(fast->next&& fast->next->next){
+            fast=fast->next->next;
+            slow=slow->next;
+            if(fast==slow)
                 return true;
-            umap[head]=1;
-            head=head->next;
         }
         return false;
     }
