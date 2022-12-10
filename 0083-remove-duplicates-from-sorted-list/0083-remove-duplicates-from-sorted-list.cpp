@@ -20,7 +20,9 @@ public:
         
         while(temp){
             while(temp && mover->val==temp->val){
+                ListNode* deletenode=temp;
                 temp=temp->next;
+                delete(deletenode);
             }
             mover->next=temp;
             if(temp)
