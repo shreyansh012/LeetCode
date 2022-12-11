@@ -32,36 +32,46 @@ struct Node *start = NULL;
 class Solution
 {
     public:
+    void insert(Node* &tail, Node* curr){
+        tail->next=curr;
+        tail=curr;
+    }
     //Function to sort a linked list of 0s, 1s and 2s.
     Node* segregate(Node *head) {
         
-        int zero=0,one=0,two=0;
+        Node* zerohead=new Node(-1);
+        Node* zerotail=zerohead;
+        Node* onehead=new Node(-1);
+        Node* onetail=onehead;
+        Node* twohead=new Node(-1);
+        Node* twotail=twohead;
+        
         Node* temp=head;
         while(temp){
-            if(temp->data==0)
-                zero++;
-            else if(temp->data==1)
-                one++;
-            else two++;
-            temp=temp->next;
-        }
-        temp=head;
-        while(temp){
-            if(zero){
-                temp->data=0;
-                zero--;
+            if(temp->data==0){
+                insert(zerotail,temp);
             }
-            else if(one){
-                temp->data=1;
-                one--;
+            else if(temp->data==1){
+                insert(onetail,temp);
             }
             else{
-                temp->data=2;
-                two--;
+                insert(twotail,temp);
             }
-            
             temp=temp->next;
+            
         }
+        if(onehead->next){
+            zerotail->next=onehead->next;
+        }
+        else{
+            zerotail->next=twohead->next;
+        }
+        onetail->next=twohead->next;
+        twotail->next=NULL;
+        head=zerohead->next;
+        delete zerohead;
+        delete onehead;
+        delete twohead;
         return head;
     }
 };
