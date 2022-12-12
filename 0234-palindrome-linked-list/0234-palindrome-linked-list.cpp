@@ -10,18 +10,16 @@
  */
 class Solution {
 public:
-    void solve(ListNode* &temp, ListNode* slow, bool &flag){
-        if(!slow){
-            return;
+    ListNode* reverselist(ListNode* node){
+        ListNode* prev=NULL;
+        ListNode* temp=NULL;
+        while(node){
+            temp=node->next;
+            node->next=prev;
+            prev=node;
+            node=temp;
         }
-        solve(temp,slow->next,flag);
-        if(temp->val!=slow->val){
-            flag=0;
-            return;
-        }
-        else{
-            temp=temp->next;
-        }
+        return prev;
     }
     
     bool isPalindrome(ListNode* head) {
@@ -38,10 +36,16 @@ public:
             slow=slow->next;
             fast=fast->next->next;
         }
-        ListNode* temp=head;
-        bool flag=1;
-        solve(temp,slow->next,flag);
-        
-        return flag;
+        ListNode* end=reverselist(slow->next);
+        slow->next=end;
+        ListNode* h1=head, *h2=slow->next;
+        while(h2){
+            if(h1->val!=h2->val){
+                return 0;
+            }
+            h1=h1->next;
+            h2=h2->next;
+        }
+        return 1;
     }
 };
