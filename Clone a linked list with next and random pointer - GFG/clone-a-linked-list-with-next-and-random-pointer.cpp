@@ -37,19 +37,35 @@ class Solution
             insertattail(listhead, listtail, temp->data);
             temp=temp->next;
         }
-        unordered_map<Node*, Node*> umap;
+        
         temp=head;
         Node* temp2=listhead;
+        while(temp && temp2){
+            Node* next=temp->next;
+            temp->next=temp2;
+            temp=next;
+            next=temp2->next;
+            temp2->next=temp;
+            temp2=next;
+        }
+        temp=head;
         while(temp){
-            umap[temp]=temp2;
-            temp=temp->next;
-            temp2=temp2->next;
+            if(temp->next){
+                if(temp->arb)
+                    temp->next->arb=temp->arb->next;
+            }
+            else{
+                temp->next=NULL;
+            }
+            temp=temp->next->next;
         }
         temp=head;
         temp2=listhead;
-        while(temp){
-            temp2->arb=umap[temp->arb];
+        while(temp && temp2){
+            temp->next=temp2->next;
             temp=temp->next;
+            if(temp)
+                temp2->next=temp->next;
             temp2=temp2->next;
         }
         return listhead;
