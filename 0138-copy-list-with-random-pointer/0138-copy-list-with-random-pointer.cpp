@@ -28,29 +28,42 @@ class Solution {
     }
 public:
     Node* copyRandomList(Node* head) {
-        Node* list=NULL;
-        Node* tail=NULL;
-        Node* temp=head;
+        Node *listhead=NULL, *listtail=NULL, *temp=head;
         while(temp){
-            insertattail(list, tail, temp->val);
+            insertattail(listhead, listtail, temp->val);
             temp=temp->next;
         }
-        unordered_map<Node*, Node*> umap;
+
         temp=head;
-        Node* temp2=list;
-        while(temp && temp){
-            umap[temp]=temp2;
+        Node* temp2=listhead;
+        while(temp && temp2){
+            Node* next=temp->next;
+            temp->next=temp2;
+            temp=next;
+            next=temp2->next;
+            temp2->next=temp;
+            temp2=next;
+        }
+        temp=head;
+        while(temp){
+            if(temp->next){
+                if(temp->random)
+                    temp->next->random=temp->random->next;
+            }
+            else{
+                temp->next=NULL;
+            }
+            temp=temp->next->next;
+        }
+        temp=head;
+        temp2=listhead;
+        while(temp && temp2){
+            temp->next=temp2->next;
             temp=temp->next;
+            if(temp)
+                temp2->next=temp->next;
             temp2=temp2->next;
         }
-        temp2=list;
-        temp=head;
-        while(temp2){
-            Node* ans=umap[temp->random];
-            temp2->random=ans;
-            temp2=temp2->next;
-            temp=temp->next;
-        }
-        return list;
+        return listhead;
     }
 };
