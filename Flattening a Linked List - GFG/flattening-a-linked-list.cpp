@@ -143,7 +143,6 @@ Node* mergesorted(Node* node1, Node* node2){
         temp=node2;
         node2=node2->bottom;
     }
-    //temp->next=NULL;
     ans=ans->bottom;
     return ans;
 }
@@ -152,10 +151,9 @@ Node *flatten(Node *root)
    if(!root || !root->next){
        return root;
    }
-   Node* down=root;
-   Node* right=flatten(down->next);
-   //down->next=NULL;
-   Node* ans=mergesorted(down,right);
+   //Node* down=root;
+   Node* right=flatten(root->next);
+   Node* ans=mergesorted(root,right);
    return ans;
 }
 
