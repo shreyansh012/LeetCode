@@ -143,7 +143,7 @@ Node* mergesorted(Node* node1, Node* node2){
         temp=node2;
         node2=node2->bottom;
     }
-    temp->next=NULL;
+    //temp->next=NULL;
     ans=ans->bottom;
     return ans;
 }
