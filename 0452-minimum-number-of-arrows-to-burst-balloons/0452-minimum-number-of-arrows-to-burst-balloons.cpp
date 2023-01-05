@@ -4,7 +4,7 @@ public:
         int n=points.size();
         if(n==1) return 1;
         sort(points.begin(),points.end());
-        int ans=0,iter=0,i=1;
+        int ans=0,i=1;
         int upperbound=points[0][1];
         while(i<n){
             ans++;
