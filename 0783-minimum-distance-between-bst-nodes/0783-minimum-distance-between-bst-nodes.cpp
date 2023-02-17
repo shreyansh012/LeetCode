@@ -12,9 +12,10 @@
 class Solution {
     vector<int> arr;
     void solve(TreeNode* root){
-        arr.push_back(root->val);
+        
         if(root->left)
             solve(root->left);
+        arr.push_back(root->val);
         if(root->right)
             solve(root->right);
     }
@@ -22,7 +23,7 @@ public:
     int minDiffInBST(TreeNode* root) {
         int ans=INT_MAX;
         solve(root);
-        sort(arr.begin(),arr.end());
+        //sort(arr.begin(),arr.end());
         for(int i=0;i<arr.size()-1;i++){
             ans=min(ans, arr[i+1]-arr[i]);
         }
