@@ -4,17 +4,14 @@ public:
         int start=0,end=nums.size()-1;
         int mid=start+((end-start)>>1);
         while(start<=end){
-            if(nums[mid]==target){
+            if(nums[mid]==target)
                 return mid;
-            }
-            else if(nums[mid]>target){
+            else if(nums[mid]>target)
                 end=mid-1;
-            }
-            else{
+            else
                 start=mid+1;
-            }
             mid=start+((end-start)>>1);
         }
-        return end+1;
+        return mid+1;
     }
 };
