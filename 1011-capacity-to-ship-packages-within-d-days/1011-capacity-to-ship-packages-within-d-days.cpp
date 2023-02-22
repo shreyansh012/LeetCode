@@ -1,17 +1,14 @@
 class Solution {
     bool ispossible(vector<int> &weights, int days, int limit){
-        int sum=0;
-        int i=0, n=weights.size();
+        int sum=0, i=0, n=weights.size();
         while(i<n && days){
             sum=0;
             while(i<n && (sum+weights[i])<=limit ){
-                sum+=weights[i];
-                i++;
+                sum+=weights[i++];
             }
             days--;
         }
-        if(i!=n)
-            return false;
+        if(i!=n)    return false;
         return true;
     }
 public:
@@ -21,8 +18,7 @@ public:
             s=max(s, i);
             e+=i;
         }
-        int ans=INT_MAX;
-        int mid=s+((e-s)>>1);
+        int ans=INT_MAX, mid=s+((e-s)>>1);
         while(s<=e){
             if(ispossible(weights, days, mid)){
                 ans=min(ans, mid);
