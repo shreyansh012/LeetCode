@@ -8,7 +8,8 @@ public:
             int s=0, e=m-1;
             int mid=s+((e-s)>>1);
             while(s<=e){
-                long long prod = (long long)potions[mid]*(long long)spells[i];
+                long long prod = potions[mid];
+                prod*=spells[i];
                 if(prod >= success)
                     e=mid-1;
                 else
